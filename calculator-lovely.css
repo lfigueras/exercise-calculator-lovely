@@ -49,18 +49,12 @@ html {
   h6 {
     display: block;
   }
-  /* Removes all decimals and discs from lists */
+  
   ol,
   ul {
     list-style: none;
   }
-  /* 
-   * Completely resets form items
-   * ----------------------------
-   * Super hard reset that removes all borders
-   * and radiuses of all form items (including
-   * checkboxes and radios)
-   */
+
   input,
   textarea,
   button {

@@ -70,9 +70,11 @@ keys.addEventListener('click', e => {
     if (action === 'decimal') {
       console.log('decimal key!')
 
-      if (!displayedNum.includes('.') && previousKeyType !== 'operator' ) {
+      if (!displayedNum.includes('.') && previousKeyType !== 'operator' && previousKeyType !== 'calculate' ) {
+        
         display.textContent = displayedNum + '.'
-      } else if (previousKeyType === 'operator') {
+      } else if (previousKeyType === 'operator' || previousKeyType === 'calculate') {
+        
         display.textContent = '0.'
       }
       calculator.dataset.previousKeyType = 'decimal'
@@ -81,6 +83,16 @@ keys.addEventListener('click', e => {
     if (action === 'clear') {
       console.log('clear key!')
 
+      if (key.textContent === 'AC') {
+        calculator.dataset.firstValue = ''
+        calculator.dataset.modValue = ''
+        calculator.dataset.operator = ''
+        calculator.dataset.previousKeyType = ''
+      } else {
+        key.textContent = 'AC'
+      }
+
+      display.textContent = 0
       calculator.dataset.previousKeyType = 'clear'
     }
 
@@ -91,10 +103,9 @@ keys.addEventListener('click', e => {
     
     if (action === 'calculate') {
       console.log('equal key!')
-
       let firstValue = calculator.dataset.firstValue
       const operator = calculator.dataset.operator
-      const secondValue = displayedNum
+      let secondValue = displayedNum
 
       if (firstValue) {
         if (previousKeyType === 'calculate') {
